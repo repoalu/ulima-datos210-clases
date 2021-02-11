@@ -1,0 +1,81 @@
+--Antiguedad promedio en anios de los empleados del departamento de ventas (Sales)
+SELECT TRUNC(AVG(TRUNC(MONTHS_BETWEEN(SYSDATE, E.HIRE_DATE)/12)), 2)
+FROM EMPLOYEES E, DEPARTMENTS D
+WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+AND D.DEPARTMENT_NAME = 'Sales';
+
+--Manager y cantidad de empleados a cargo. Considere solo aquellos que tengan
+--5 subordinados o mas
+
+SELECT  MGR.FIRST_NAME || ' ' || MGR.LAST_NAME AS MANAGER,
+        COUNT(*)
+FROM EMPLOYEES EMP, EMPLOYEES MGR
+WHERE EMP.MANAGER_ID = MGR.EMPLOYEE_ID
+GROUP BY MGR.FIRST_NAME, MGR.LAST_NAME
+HAVING COUNT(*) >= 5
+ORDER BY COUNT(*) DESC;
+
+--Empleado y Manager (Self Join)
+SELECT  EMP.FIRST_NAME || ' ' || EMP.LAST_NAME EMPLOYEE,
+        MGR.FIRST_NAME || ' ' || MGR.LAST_NAME MANAGER  
+FROM EMPLOYEES EMP, EMPLOYEES MGR
+WHERE EMP.MANAGER_ID = MGR.EMPLOYEE_ID;
+
+
+--Uso de consultas en la clausula FROM
+
+--Muestre aquellos empleados que ganan mas que el promedio de su departamento
+SELECT * 
+FROM    EMPLOYEES E,
+        (SELECT DEPARTMENT_ID, AVG(SALARY) AS AVERAGE FROM EMPLOYEES
+        GROUP BY DEPARTMENT_ID) AVG_SAL
+WHERE E.DEPARTMENT_ID = AVG_SAL.DEPARTMENT_ID
+AND E.SALARY > AVG_SAL.AVERAGE;
+
+
+--Antiguedad promedio en anios de los empleados del departamento de ventas (Sales)
+SELECT TRUNC(AVG(TRUNC(MONTHS_BETWEEN(SYSDATE, E.HIRE_DATE)/12)), 2)
+FROM EMPLOYEES E, DEPARTMENTS D
+WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+AND D.DEPARTMENT_NAME = 'Sales';
+
+--Manager y cantidad de empleados a cargo. Considere solo aquellos que tengan
+--5 subordinados o mas
+
+SELECT  MGR.FIRST_NAME || ' ' || MGR.LAST_NAME AS MANAGER,
+        COUNT(*)
+FROM EMPLOYEES EMP, EMPLOYEES MGR
+WHERE EMP.MANAGER_ID = MGR.EMPLOYEE_ID
+GROUP BY MGR.FIRST_NAME, MGR.LAST_NAME
+HAVING COUNT(*) >= 5
+ORDER BY COUNT(*) DESC;
+
+--Empleado y Manager (Self Join)
+SELECT  EMP.FIRST_NAME || ' ' || EMP.LAST_NAME EMPLOYEE,
+        MGR.FIRST_NAME || ' ' || MGR.LAST_NAME MANAGER  
+FROM EMPLOYEES EMP, EMPLOYEES MGR
+WHERE EMP.MANAGER_ID = MGR.EMPLOYEE_ID;
+
+
+--Uso de consultas en la clausula FROM
+
+--Muestre aquellos empleados que ganan mas que el promedio de su departamento
+SELECT * 
+FROM    EMPLOYEES E,
+        (SELECT DEPARTMENT_ID, AVG(SALARY) AS AVERAGE FROM EMPLOYEES
+        GROUP BY DEPARTMENT_ID) AVG_SAL
+WHERE E.DEPARTMENT_ID = AVG_SAL.DEPARTMENT_ID
+AND E.SALARY > AVG_SAL.AVERAGE;
+SELECT * FROM JOBS
+
+
+--Muestre el apellido, departamento, ciudad, pais y region
+--de todos los empleados
+SELECT E.LAST_NAME, D.DEPARTMENT_NAME, L.CITY, C.COUNTRY_NAME, R.REGION_NAME
+FROM EMPLOYEES E, DEPARTMENTS D, LOCATIONS L, COUNTRIES C, REGIONS R
+WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+AND L.LOCATION_ID = D.LOCATION_ID
+AND C.COUNTRY_ID = L.COUNTRY_ID
+AND R.REGION_ID = C.REGION_ID
+
+
