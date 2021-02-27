@@ -1,0 +1,19 @@
+--DEFINICION DEL PROCEDURE
+CREATE OR REPLACE PROCEDURE OBTENER_TIPO_TRIANGULO(a NUMBER, b NUMBER, c NUMBER)
+AS
+BEGIN
+    IF a = b AND b = c THEN
+        DBMS_OUTPUT.PUT_LINE('Triangulo equilatero');
+    ELSIF a = b OR a = c OR b = c THEN
+        DBMS_OUTPUT.PUT_LINE('Triangulo isosceles');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Triangulo escaleno');
+    END IF;
+END;
+
+--PRUEBAS
+BEGIN
+    OBTENER_TIPO_TRIANGULO(5, 5, 5);
+    OBTENER_TIPO_TRIANGULO(6, 6, 7);
+    OBTENER_TIPO_TRIANGULO(3, 4, 5);
+END;
