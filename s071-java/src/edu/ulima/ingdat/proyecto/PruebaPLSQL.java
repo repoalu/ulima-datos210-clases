@@ -25,6 +25,8 @@ public class PruebaPLSQL {
     
     public static String url = "jdbc:oracle:thin:@129.151.103.165:1521/"
             + "pdbulima.subnetpublica01.vncriccio.oraclevcn.com";
+    
+    public static String url1 = "jdbc:oracle:thin:@129.151.103.165:1521/pdbulima.subnetpublica01.vncriccio.oraclevcn.com";
     //Nombre de usuario para la conexion
     public static String usuario = "<su_usuario>";
     //Contrasenia para conectarse

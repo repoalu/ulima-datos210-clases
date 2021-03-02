@@ -26,14 +26,14 @@ public class PruebaSelect {
     public static String url = "jdbc:oracle:thin:@129.151.103.165:1521/"
             + "pdbulima.subnetpublica01.vncriccio.oraclevcn.com";
     //Nombre de usuario para la conexion
-    public static String usuario = "<su_usuario>";
+    public static String usuario = "ALUMNO30";
     //Contrasenia para conectarse
     public static String password = "PeruLima__2020";
     
     public static List<Empleado> obtenerEmpleados() throws Exception{
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();        
         Connection conn = DriverManager.getConnection(url, usuario, password);
-        String sql = "SELECT * FROM CLIENTE";
+        String sql = "SELECT * FROM EMPLOYEES";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
